@@ -4,18 +4,42 @@
         <title>App Meteo</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/ico" href="AppMeteo.png" />
+        <link rel="icon" type="image/ico" href="AppMeteo.png"/>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <link href="css/weather-icons-master/css/weather-icons.css" rel="stylesheet">
-        
+
     </head>
     <body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="php/register.php">Connection</a>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="php/register.php">S'inscrire </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Se connecter</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </nav>
+
+
+
+
+
+
         <section id="app">
             <h1>
                 <span id="ville"></span>
                 <span class="tooltip">Tapez une autre ville si vous le souhaitez</span>
             </h1>
-            <i class="wi"></i>
+                <i class="wi"></i>
             <h2>
                 <span id="temperature"></span> C° (<span id="conditions"></span>)
             </h2>

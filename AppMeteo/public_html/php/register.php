@@ -21,8 +21,17 @@ if(!empty($_POST))
     {
         $errors['password'] = "Vous devez rentrer un mot de passe valide";
     }
-}
 
+    if(empty($errors))
+    {
+        require_once 'include/db.php';
+
+        $req = $pdo->prepare("INSERT INTO users SET username = ?, password = ?, email = ?");
+        $password = password_hash(htmlspecialchars($_POST['password']), PASSWORD_BCRYPT);
+        $req->execute([htmlspecialchars($_POST['username']), $password, htmlspecialchars($_POST['email'])]);
+        die('Votre compte a bien été créé');
+    }
+}
 
 ?>
 <h1> S'inscrire </h1>

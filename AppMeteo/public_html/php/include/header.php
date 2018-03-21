@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
+ <!--   <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
+    <link rel="icon" href="../../../../favicon.ico">-->
 
     <title>Connection</title>
 
@@ -17,12 +17,12 @@
 <body>
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a class="navbar-brand" href="../php/include/header.php">Connection</a>
+    <a class="navbar-brand" href="../php/register.php">Connection</a>
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="../register.php">S'inscrire </a>
+                <a class="nav-link" href="../php/register.php">S'inscrire </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../php/login.php">Se connecter</a>
