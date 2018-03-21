@@ -17,7 +17,7 @@
 <body>
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a class="navbar-brand" href="../php/register.php">Connection</a>
+    <a class="navbar-brand" href="../index.html">AppMeteo</a>
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">

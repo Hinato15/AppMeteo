@@ -44,7 +44,6 @@ function main(withIP = true)
     {
         var options = {
             enableHighAccuracy: true,
-            timeout: 5000,
             maximumAge: 0
         };
 
