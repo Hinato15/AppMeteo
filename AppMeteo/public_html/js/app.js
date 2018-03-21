@@ -15,55 +15,30 @@ function capitalize(str)
 
 /* global fetch */
 
-
-function main(withIP = true)
+async function main(withIP = true)
 {
-    async function getMeteo(crd)
-    {
-        let req;
-        
-        if (crd)
-        {
-            req = `https://api.openweathermap.org/data/2.5/weather?lat=${crd.latitude}&lon=${crd.longitude}&appid=f1286dc7f273ee264e8c0026fc15c313&lang=fr&units=metric`;
-
-        } else {
-            let ville = document.getElementById("ville").textContent;
-
-            req = `https://api.openweathermap.org/data/2.5/weather?q=${ville}&appid=f1286dc7f273ee264e8c0026fc15c313&lang=fr&units=metric`;
-        }
-
-        const meteo = await fetch(req)
-
-                .then(resultat => resultat.json())
-                .then(json => json);
-
-        displayWeatherInfos(meteo);
-    }
-
+    let ville;
+    
     if (withIP)
     {
-        var options = {
-            enableHighAccuracy: true,
-            timeout: 5000,
-            maximumAge: 0
-        };
+        const ip = await fetch('https://api.ipify.org?format=json')
+                .then(resultat => resultat.json())
+                .then(json => json.ip);
 
-        function success(pos) {
-            var crd = pos.coords;
-            getMeteo(crd);
 
-        };
-
-        function error(err) {
-            console.warn(`ERROR(${err.code}): ${err.message}`);
-        };
-        navigator.geolocation.getCurrentPosition(success, error, options);
-
+         ville = await fetch('http://freegeoip.net/json/' + ip)
+                .then(resultat => resultat.json())
+                .then(json => json.city);
     } else {
-        getMeteo();
+        ville = document.getElementById("ville").textContent;
     }
 
-}
+    const meteo = await fetch('http://api.openweathermap.org/data/2.5/weather?q=' + ville + '&APPID=f1286dc7f273ee264e8c0026fc15c313&lang=fr&units=metric')
+            .then(resultat => resultat.json())
+            .then(json => json);
+
+    displayWeatherInfos(meteo);
+} 
 
 function displayWeatherInfos(data)
 {
@@ -83,7 +58,7 @@ function displayWeatherInfos(data)
 
 const ville = document.getElementById("ville");
 
-ville.addEventListener('click', () => {
+ville.addEventListener('click', () =>  {
     ville.contentEditable = true;
 });
 
@@ -91,7 +66,7 @@ ville.addEventListener('keydown', (e) => {
     if (e.keyCode === 13) {
         e.preventDefault();
         ville.contentEditable = false;
-        main(false);
+        main(false); 
     }
 });
 
