@@ -25,7 +25,6 @@ async function main(withIP = true)
                 .then(resultat => resultat.json())
                 .then(json => json.ip);
 
-
          ville = await fetch('http://freegeoip.net/json/' + ip)
                 .then(resultat => resultat.json())
                 .then(json => json.city);
