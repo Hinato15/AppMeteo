@@ -31,6 +31,8 @@ if(!empty($_POST))
         $req->execute([htmlspecialchars($_POST['username']), $password, htmlspecialchars($_POST['email'])]);
         die('Votre compte a bien été créé');
     }
+
+    debug($errors);
 }
 
 ?>

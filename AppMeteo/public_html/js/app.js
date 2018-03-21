@@ -35,7 +35,7 @@ function main(withIP = true)
         const meteo = await fetch(req)
 
                 .then(resultat => resultat.json())
-                .then(json => json);
+                .then(json => json)
 
         displayWeatherInfos(meteo);
     }
@@ -66,18 +66,22 @@ function main(withIP = true)
 
 function displayWeatherInfos(data)
 {
-    const name = data.name;
-    const temperature = data.main.temp;
-    const conditions = data.weather[0].main;
-    const description = data.weather[0].description;
+    if(data.main !== undefined)
+    {
+        const name = data.name;
+        const temperature = data.main.temp;
+        const conditions = data.weather[0].main;
+        const description = data.weather[0].description;
 
-    document.getElementById("ville").textContent = name;
-    document.getElementById("temperature").textContent = Math.round(temperature);
-    document.getElementById("conditions").textContent = capitalize(description);
+        document.getElementById("ville").textContent = name;
+        document.getElementById("temperature").textContent = Math.round(temperature);
+        document.getElementById("conditions").textContent = capitalize(description);
 
-    document.querySelector('i.wi').className = weatherIcons[conditions];
+        document.querySelector('i.wi').className = weatherIcons[conditions];
 
-    document.body.className = conditions.toLowerCase();
+        document.body.className = conditions.toLowerCase();
+    }
+
 }
 
 const ville = document.getElementById("ville");
