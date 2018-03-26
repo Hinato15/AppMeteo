@@ -1,21 +1,21 @@
 .clear
 {
-    background-image: url(https://plateformeelsaa.files.wordpress.com/2016/05/ciel-clair-nuages-1500-300-museumtextures_com-1310221541.jpg);
+    background-image: url(weather/clear.jpg);
 }
 
 .clouds
 {
-    background-image: url(http://www.laboiteverte.fr/wp-content/uploads/2011/05/paysage-nuage-ciel-03.jpg);
+    background-image: url(weather/clouds.jpg);
 }
 
 .rain
 {
-    background-image: url(https://i.ytimg.com/vi/T3ASjlCH0S8/maxresdefault.jpg);
+    background-image: url(weather/rain.jpg);
 }
 
 .snow
 {
-    background-image: url(https://i.ytimg.com/vi/ea1GMrjjJ1A/maxresdefault.jpg);
+    background-image: url(weather/snow.jpg);
 }
 
 body
@@ -40,11 +40,16 @@ h1
 }
 
 #ville
-{
-    border: 1px solid white;
+{   
     padding: 10px;
     border-radius: 5px;
-    box-shadow: 2px 2px 5px white;
+}
+
+#warning_text
+{
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
 }
 
 i.wi

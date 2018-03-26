@@ -5,8 +5,27 @@ const weatherIcons = {
     "Snow": "wi wi-day-snow",
     "mist": "wi wi-day-fog",
     "Drizzle": "wi wi-day-sleet"
-
 };
+
+const borderTemp = {
+    "Rain": "1px solid black",
+    "Clouds": "1px solid grey",
+    "Clear": "1px solid yellow",
+    "Snow": "1px solid white",
+    "mist": "1px solid grey",
+    "Drizzle": "1px solid dimgray"
+};
+
+const boxTemp = {
+    "Rain": "2px 2px 5px black",
+    "Clouds": "2px 2px 5px grey",
+    "Clear": "2px 2px 5px yellow",
+    "Snow": "2px 2px 5px white",
+    "mist": "2px 2px 5px grey",
+    "Drizzle": "2px 2px 5px dimgray"
+};
+
+
 
 function capitalize(str)
 {
@@ -32,42 +51,39 @@ function main(withIP = true)
             req = `https://api.openweathermap.org/data/2.5/weather?q=${ville}&appid=f1286dc7f273ee264e8c0026fc15c313&lang=fr&units=metric`;
         }
 
-        const meteo = await fetch(req)
-
+            const meteo = await fetch(req)
+          
                 .then(resultat => resultat.json())
-                .then(json => json)
-
-        displayWeatherInfos(meteo);
+                .then(json => json);
+            
+        displayWeatherInfos(meteo);  
+                  
     }
+   
 
     if (withIP)
     {
-        var options = {
-            enableHighAccuracy: true,
-            maximumAge: 0
-        };
-
         function success(pos) {
             var crd = pos.coords;
             getMeteo(crd);
-
         };
-
-        function error(err) {
-            console.warn(`ERROR(${err.code}): ${err.message}`);
-        };
-        navigator.geolocation.getCurrentPosition(success, error, options);
+        
+        navigator.geolocation.getCurrentPosition(success);
 
     } else {
-        getMeteo();
+           getMeteo();
     }
 
 }
 
 function displayWeatherInfos(data)
 {
-    if(data.main !== undefined)
+    if(data.cod === "404")
     {
+        document.getElementById("warning_text").textContent = "La ville saisie est incorrect";
+        document.getElementById("warning_text").style.opacity = 1;
+        
+    } else {
         const name = data.name;
         const temperature = data.main.temp;
         const conditions = data.weather[0].main;
@@ -78,8 +94,13 @@ function displayWeatherInfos(data)
         document.getElementById("conditions").textContent = capitalize(description);
 
         document.querySelector('i.wi').className = weatherIcons[conditions];
+        document.getElementById("ville").style.border = borderTemp[conditions];
+        document.getElementById("ville").style.boxShadow = boxTemp[conditions];
 
         document.body.className = conditions.toLowerCase();
+        
+        document.getElementById("warning_text").textContent = "Statement";
+        document.getElementById("warning_text").style.opacity = 0;
     }
 
 }
