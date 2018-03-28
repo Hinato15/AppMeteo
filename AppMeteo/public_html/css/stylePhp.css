@@ -1,0 +1,39 @@
+/* Barre de Navigation */
+
+#navbar
+{
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    width: 100%;
+    margin-top: 5px;
+}
+
+#navbar h2
+{
+    margin-left: 20px;
+}
+
+ul
+{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 5px;
+}
+
+li
+{
+    list-style-type: none;
+    margin-right: 20px;
+}
+
+a
+{
+    color: white;
+}
+
+a:hover
+{
+    
+    text-decoration: none;
+}

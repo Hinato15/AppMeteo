@@ -3,7 +3,7 @@ const weatherIcons = {
     "Clouds": "wi wi-day-cloudy",
     "Clear": "wi wi-day-sunny",
     "Snow": "wi wi-day-snow",
-    "mist": "wi wi-day-fog",
+    "Mist": "wi wi-day-fog",
     "Drizzle": "wi wi-day-sleet"
 };
 
@@ -12,7 +12,7 @@ const borderTemp = {
     "Clouds": "1px solid grey",
     "Clear": "1px solid yellow",
     "Snow": "1px solid white",
-    "mist": "1px solid grey",
+    "Mist": "1px solid grey",
     "Drizzle": "1px solid dimgray"
 };
 
@@ -21,7 +21,7 @@ const boxTemp = {
     "Clouds": "2px 2px 5px grey",
     "Clear": "2px 2px 5px yellow",
     "Snow": "2px 2px 5px white",
-    "mist": "2px 2px 5px grey",
+    "Mist": "2px 2px 5px grey",
     "Drizzle": "2px 2px 5px dimgray"
 };
 
@@ -37,6 +37,8 @@ function capitalize(str)
 
 function main(withIP = true)
 {
+    /* Requête OpenWeatherMap */
+    
     async function getMeteo(crd)
     {
         let req;
@@ -56,10 +58,10 @@ function main(withIP = true)
                 .then(resultat => resultat.json())
                 .then(json => json);
             
-        displayWeatherInfos(meteo);  
-                  
+        displayWeatherInfos(meteo);         
     }
    
+    /* Récupèration de la position du client */
 
     if (withIP)
     {
@@ -75,6 +77,8 @@ function main(withIP = true)
     }
 
 }
+
+    /* Modifie le style en fonction des données passé */
 
 function displayWeatherInfos(data)
 {
@@ -105,11 +109,15 @@ function displayWeatherInfos(data)
 
 }
 
+    /* Rend l'élément "ville" modifiable */
+
 const ville = document.getElementById("ville");
 
 ville.addEventListener('click', () => {
     ville.contentEditable = true;
 });
+
+    /* Enlève l'usage par défaut de "entrée" */
 
 ville.addEventListener('keydown', (e) => {
     if (e.keyCode === 13) {
@@ -118,5 +126,7 @@ ville.addEventListener('keydown', (e) => {
         main(false);
     }
 });
+
+    /* Appel main */
 
 main();

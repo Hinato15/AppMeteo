@@ -4,18 +4,24 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
- <!--   <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">-->
+    <link href="../css/stylePhp.css" rel="stylesheet">
+    
 
-    <title>Connection</title>
+    <title>Inscription</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-
+    <nav id="navbar">
+            <h2><a href="../index.html">AppMeteo</a></h2>
+          <!--  <ul>
+                <li><a href="php/register.php">S'inscrire</a></li>
+                <li><a href="">Se Connecter</a></li>
+            </ul>-->
+        </nav>
+<!--
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <a class="navbar-brand" href="../index.html">AppMeteo</a>
 
@@ -30,6 +36,6 @@
 
         </ul>
 
-</nav>
+</nav>-->
 
 <main role="main" class="container">
