@@ -28,6 +28,11 @@
     background-image: url(weather/mist.jpg);
 }
 
+.thunderstorm
+{
+    background-image: url(weather/thunderstorm.jpg);
+}
+
 body
 {
     display: flex;

@@ -4,7 +4,8 @@ const weatherIcons = {
     "Clear": "wi wi-day-sunny",
     "Snow": "wi wi-day-snow",
     "Mist": "wi wi-day-fog",
-    "Drizzle": "wi wi-day-sleet"
+    "Drizzle": "wi wi-day-sleet",
+    "Thunderstorm": "wi wi-day-thunderstorm"
 };
 
 const borderTemp = {
@@ -13,7 +14,8 @@ const borderTemp = {
     "Clear": "1px solid yellow",
     "Snow": "1px solid white",
     "Mist": "1px solid grey",
-    "Drizzle": "1px solid dimgray"
+    "Drizzle": "1px solid dimgray",
+    "Thunderstorm": "1px solid white"
 };
 
 const boxTemp = {
@@ -22,7 +24,8 @@ const boxTemp = {
     "Clear": "2px 2px 5px yellow",
     "Snow": "2px 2px 5px white",
     "Mist": "2px 2px 5px grey",
-    "Drizzle": "2px 2px 5px dimgray"
+    "Drizzle": "2px 2px 5px dimgray",
+    "Thunderstorm": "2px 2px 5px white"
 };
 
 
