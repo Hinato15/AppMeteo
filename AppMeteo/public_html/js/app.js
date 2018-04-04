@@ -5,7 +5,8 @@ const weatherIcons = {
     "Snow": "wi wi-day-snow",
     "Mist": "wi wi-day-fog",
     "Drizzle": "wi wi-day-sleet",
-    "Thunderstorm": "wi wi-day-thunderstorm"
+    "Thunderstorm": "wi wi-day-thunderstorm",
+    "Haze": "wi wi-day-haze"
 };
 
 const borderTemp = {
@@ -15,7 +16,8 @@ const borderTemp = {
     "Snow": "1px solid white",
     "Mist": "1px solid grey",
     "Drizzle": "1px solid dimgray",
-    "Thunderstorm": "1px solid white"
+    "Thunderstorm": "1px solid white",
+    "Haze": "1px solid grey"
 };
 
 const boxTemp = {
@@ -25,7 +27,8 @@ const boxTemp = {
     "Snow": "2px 2px 5px white",
     "Mist": "2px 2px 5px grey",
     "Drizzle": "2px 2px 5px dimgray",
-    "Thunderstorm": "2px 2px 5px white"
+    "Thunderstorm": "2px 2px 5px white",
+    "Haze": "1px solid grey"
 };
 
 
@@ -51,7 +54,7 @@ function main(withIP = true)
             req = `https://api.openweathermap.org/data/2.5/weather?lat=${crd.latitude}&lon=${crd.longitude}&appid=f1286dc7f273ee264e8c0026fc15c313&lang=fr&units=metric`;
 
         } else {
-            let ville = document.getElementById("ville").textContent;
+            let ville = document.getElementById("ville").value;
 
             req = `https://api.openweathermap.org/data/2.5/weather?q=${ville}&appid=f1286dc7f273ee264e8c0026fc15c313&lang=fr&units=metric`;
         }
@@ -96,7 +99,7 @@ function displayWeatherInfos(data)
         const conditions = data.weather[0].main;
         const description = data.weather[0].description;
 
-        document.getElementById("ville").textContent = name;
+        document.getElementById("ville").value = name;
         document.getElementById("temperature").textContent = Math.round(temperature);
         document.getElementById("conditions").textContent = capitalize(description);
 
@@ -125,10 +128,22 @@ ville.addEventListener('click', () => {
 ville.addEventListener('keydown', (e) => {
     if (e.keyCode === 13) {
         e.preventDefault();
-        ville.contentEditable = false;
+     //   ville.contentEditable = false;
         main(false);
     }
 });
+
+    /* Auto-complétion */
+
+var options = {
+    types: ['geocode']
+};
+
+function activatePlacesSearch()
+{
+    var input = document.getElementById('ville');
+    var autocomplete = new google.maps.places.Autocomplete(input, options);
+}
 
     /* Appel main */
 

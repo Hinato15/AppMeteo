@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <title>App Meteo</title>
         <meta charset="UTF-8">
@@ -12,7 +12,6 @@
     <body>
         <div id="main_container">
             
-        
         <nav id="navbar">
             <h2><a href="index.html">AppMeteo</a></h2>
             <ul>
@@ -20,24 +19,11 @@
                 <li><a href="">Se Connecter</a></li>
             </ul>
         </nav>
-  <!--  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="index.html">AppMeteo</a>
 
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="php/register.php">S'inscrire </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">Se connecter</a>
-                </li>
-            </ul>
-        </div>
-    </nav>-->
   <div id="weather_container">
         <section id="app">
             <h1>
-                <span id="ville"></span>
+                <input id="ville" placeholder=" "> </input>
                 <span class="tooltip">Tapez une autre ville si vous le souhaitez</span>
             </h1>
             <span id="warning_text">Statement</span>
@@ -49,5 +35,6 @@
       </div>
   </div>
         <script src="js/app.js"></script>
-    </body>
-</html>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrKU0MzYVwTIiZp6J2eYdb9R4kRGNybaM&libraries=places&callback=activatePlacesSearch" async defer></script>
+      </body>
+  </html>

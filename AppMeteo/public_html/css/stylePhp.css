@@ -1,9 +1,52 @@
+.clear
+{
+    background-image: url(weather/clear.jpg);
+}
+
+.clouds
+{
+    background-image: url(weather/clouds.jpg);
+}
+
+.rain
+{
+    background-image: url(weather/rain.jpg);
+}
+
+.snow
+{
+    background-image: url(weather/snow.jpg);
+}
+
+.drizzle
+{
+    background-image: url(weather/drizzle.jpg);
+}
+
+.mist
+{
+    background-image: url(weather/mist.jpg);
+}
+
+.thunderstorm
+{
+    background-image: url(weather/thunderstorm.jpg);
+}
+
+body
+{
+    color: white;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+    overflow: hidden;
+    height: 100vh;
+    font-family: 'Trebuchet MS';
+    background-position: center;
+    background-size: cover;
+}
 /* Barre de Navigation */
 
 #navbar
 {
-    display: flex;
-    justify-content: space-between;
     height: 40px;
     width: 100%;
     margin-top: 5px;
@@ -14,19 +57,6 @@
     margin-left: 20px;
 }
 
-ul
-{
-    display: flex;
-    justify-content: space-around;
-    margin-top: 5px;
-}
-
-li
-{
-    list-style-type: none;
-    margin-right: 20px;
-}
-
 a
 {
     color: white;
@@ -34,6 +64,6 @@ a
 
 a:hover
 {
-    
+    color: white;
     text-decoration: none;
 }
