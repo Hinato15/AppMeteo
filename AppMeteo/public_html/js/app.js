@@ -6,7 +6,8 @@ const weatherIcons = {
     "Mist": "wi wi-day-fog",
     "Drizzle": "wi wi-day-sleet",
     "Thunderstorm": "wi wi-day-thunderstorm",
-    "Haze": "wi wi-day-haze"
+    "Haze": "wi wi-day-haze",
+    "Fog": "wi wi-day-fog"
 };
 
 const borderTemp = {
@@ -17,7 +18,8 @@ const borderTemp = {
     "Mist": "1px solid grey",
     "Drizzle": "1px solid dimgray",
     "Thunderstorm": "1px solid white",
-    "Haze": "1px solid grey"
+    "Haze": "1px solid grey",
+    "Fog": "1px solid grey"
 };
 
 const boxTemp = {
@@ -28,7 +30,8 @@ const boxTemp = {
     "Mist": "2px 2px 5px grey",
     "Drizzle": "2px 2px 5px dimgray",
     "Thunderstorm": "2px 2px 5px white",
-    "Haze": "1px solid grey"
+    "Haze": "2px 2px 5px grey",
+    "Fog": "2px 2px 5px grey"
 };
 
 
@@ -58,13 +61,12 @@ function main(withIP = true)
 
             req = `https://api.openweathermap.org/data/2.5/weather?q=${ville}&appid=f1286dc7f273ee264e8c0026fc15c313&lang=fr&units=metric`;
         }
-
             const meteo = await fetch(req)
           
                 .then(resultat => resultat.json())
                 .then(json => json);
             
-        displayWeatherInfos(meteo);         
+        displayWeatherInfos(meteo);
     }
    
     /* Récupèration de la position du client */
@@ -72,16 +74,13 @@ function main(withIP = true)
     if (withIP)
     {
         function success(pos) {
-            var crd = pos.coords;
+            let crd = pos.coords;
             getMeteo(crd);
-        };
-        
+        }
         navigator.geolocation.getCurrentPosition(success);
-
     } else {
            getMeteo();
     }
-
 }
 
     /* Modifie le style en fonction des données passé */
@@ -112,7 +111,6 @@ function displayWeatherInfos(data)
         document.getElementById("warning_text").textContent = "Statement";
         document.getElementById("warning_text").style.opacity = 0;
     }
-
 }
 
     /* Rend l'élément "ville" modifiable */
@@ -135,14 +133,14 @@ ville.addEventListener('keydown', (e) => {
 
     /* Auto-complétion */
 
-var options = {
+let options = {
     types: ['geocode']
 };
 
 function activatePlacesSearch()
 {
-    var input = document.getElementById('ville');
-    var autocomplete = new google.maps.places.Autocomplete(input, options);
+    let input = document.getElementById('ville');
+    let autocomplete = new google.maps.places.Autocomplete(input, options);
 }
 
     /* Appel main */

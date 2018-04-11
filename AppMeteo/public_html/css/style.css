@@ -38,6 +38,11 @@
     background-image: url(weather/mist.jpg);
 }
 
+.fog
+{
+    background-image: url(weather/drizzle.jpg);
+}
+
 body
 {
     display: flex;
@@ -45,7 +50,6 @@ body
     align-items: center;
     color: white;
     text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
-    overflow: hidden;
     text-align: center;
     font-family: 'Trebuchet MS';
     background-position: center;
@@ -71,7 +75,7 @@ input
 
 #weather_container
 {
-    margin-top: 250px;
+    margin-top: 200px;
     height: 100vh;
 }
 

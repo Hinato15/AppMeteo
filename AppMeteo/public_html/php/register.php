@@ -1,28 +1,14 @@
-<?php require 'include/functions.php' ?>
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Inscription</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="icon" type="image/ico" href="../AppMeteo.png"/>
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/stylePhp.css" rel="stylesheet">
-    </head>
-
-<body>
-
-<nav id="navbar">
-    <h2><a href="../index.html">AppMeteo</a></h2>
-</nav>
-<main role="main" class="container">
-
+<?php require_once 'include/functions.php' ?>
+<?php session_start(); ?>
+<?php
+$title = "Inscription";
+?>
+<?php require 'include/header.php' ?>
     <?php
 
     if (!empty($_POST)) {
         $errors = array();
         require_once 'include/db.php';
-
 
         /* Username */
 
@@ -33,7 +19,7 @@
             $req->execute([htmlspecialchars($_POST['username'])]);
             $user = $req->fetch();
             if ($user) {
-                $errors['username'] = 'Ce pseudo existe déja';
+                $errors['username'] = 'Ce pseudo existe déjà';
             }
         }
 
@@ -46,7 +32,7 @@
             $req->execute([htmlspecialchars($_POST['email'])]);
             $user = $req->fetch();
             if ($user) {
-                $errors['email'] = 'Cette email existe déja';
+                $errors['email'] = 'Cet email existe déjà';
             }
         }
 
@@ -57,10 +43,15 @@
         }
 
         if (empty($errors)) {
-            $req = $pdo->prepare("INSERT INTO users SET username = ?, password = ?, email = ?");
+            $req = $pdo->prepare("INSERT INTO users SET username = ?, password = ?, email = ?, confirmation_token = ?");
             $password = password_hash(htmlspecialchars($_POST['password']), PASSWORD_BCRYPT);
-            $req->execute([htmlspecialchars($_POST['username']), $password, htmlspecialchars($_POST['email'])]);
-            die('Votre compte a bien été créé');
+            $token = str_random(20);
+            $req->execute([htmlspecialchars($_POST['username']), $password, htmlspecialchars($_POST['email']), $token]);
+            $user_id = $pdo->lastInsertId();
+            mail(htmlspecialchars($_POST['email']), 'Confirmation de votre compte', "Afin de valider votre compte merci de cliquer sur ce lien\n\nhttp://localhost/AppMeteo/AppMeteo/public_html/php/confirm.php?id=$user_id&token=$token");
+            $_SESSION['flash']['success'] = 'Un email de confirmation vous a été envoyé pour valider votre compte';
+            echo '<script>document.location.href="login.php";</script>';
+            exit();
         }
 
         // debug($errors);
@@ -104,12 +95,5 @@
 
         <button type="submit" class="btn btn-primary">M'inscrire</button>
     </form>
-
-
-</main><!-- /.container -->
-
-<script src="../js/underApp.js"></script>
-
-</body>
-</html>
+<?php require 'include/footer.php' ?>
 

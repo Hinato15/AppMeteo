@@ -1,4 +1,5 @@
 function main(withIP = true) {
+
     /* Requête OpenWeatherMap */
 
     async function getMeteo(crd) {
@@ -6,9 +7,7 @@ function main(withIP = true) {
 
         if (crd) {
             req = `https://api.openweathermap.org/data/2.5/weather?lat=${crd.latitude}&lon=${crd.longitude}&appid=f1286dc7f273ee264e8c0026fc15c313&lang=fr&units=metric`;
-
         }
-
         const meteo = await fetch(req)
 
             .then(resultat => resultat.json())
@@ -21,16 +20,12 @@ function main(withIP = true) {
 
     if (withIP) {
         function success(pos) {
-            var crd = pos.coords;
+            let crd = pos.coords;
             getMeteo(crd);
-        };
-
+        }
         navigator.geolocation.getCurrentPosition(success);
-
     }
-
 }
-
 
 function displayWeatherInfos(data)
 {
