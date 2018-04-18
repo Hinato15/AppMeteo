@@ -86,6 +86,7 @@ if(ville)
 
     ville.addEventListener('keydown', (e) => {
         if (e.keyCode === 13) {
+            e.preventDefault();
             main(false);
         }
     });

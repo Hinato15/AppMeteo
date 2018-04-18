@@ -56,17 +56,21 @@ if(isset($_POST['password']))
                 <div class="col-lg-4">
                     <input type="text" id="ville" placeholder="" name="research" class="form-control ">
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-5">
                     <input id="temperature" name="temperature" class="weather"> C° (<input id="conditions" name="conditions" class="weather">) <br>
+                </div>
+                <div class="col-lg-2">
+                    <button class="btn btn-primary">Enregistrer ma recherche</button>
                 </div>
             </div>
             <span id="warning_text">Statement</span>
-
         </div>
-        <button class="btn btn-primary" style="visibility: hidden">Confirmer</button>
+
     </form>
 
-    <h2>Dernière Recherches</h2>
+    <br>
+
+    <h2>Recherches Enregistrer</h2>
     <ul id="search_list">
         <?php foreach ($searchs as $search): ?>
 
