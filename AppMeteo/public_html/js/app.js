@@ -35,7 +35,6 @@ const boxTemp = {
 };
 
 
-
 function capitalize(str)
 {
     return str[0].toUpperCase() + str.slice(1);
@@ -85,51 +84,57 @@ function main(withIP = true)
 
     /* Modifie le style en fonction des données passé */
 
+const warning = document.getElementById("warning_text");
+const ville = document.getElementById("ville");
+
 function displayWeatherInfos(data)
 {
     if(data.cod === "404")
     {
-        document.getElementById("warning_text").textContent = "La ville saisie est incorrect";
-        document.getElementById("warning_text").style.opacity = 1;
-        
+        warning.textContent = "La ville saisie est incorrect";
+        warning.style.opacity = 1;
+
     } else {
         const name = data.name;
         const temperature = data.main.temp;
         const conditions = data.weather[0].main;
         const description = data.weather[0].description;
 
-        document.getElementById("ville").value = name;
+        ville.value = name;
         document.getElementById("temperature").textContent = Math.round(temperature);
         document.getElementById("conditions").textContent = capitalize(description);
 
+
         document.querySelector('i.wi').className = weatherIcons[conditions];
-        document.getElementById("ville").style.border = borderTemp[conditions];
-        document.getElementById("ville").style.boxShadow = boxTemp[conditions];
+        ville.style.border = borderTemp[conditions];
+        ville.style.boxShadow = boxTemp[conditions];
+
 
         document.body.className = conditions.toLowerCase();
-        
-        document.getElementById("warning_text").textContent = "Statement";
-        document.getElementById("warning_text").style.opacity = 0;
+
+        warning.textContent = "Statement";
+        warning.style.opacity = 0;
+
     }
 }
 
+if(ville)
+{
     /* Rend l'élément "ville" modifiable */
 
-const ville = document.getElementById("ville");
-
-ville.addEventListener('click', () => {
-    ville.contentEditable = true;
-});
+    ville.addEventListener('click', () => {
+        ville.contentEditable = true;
+    });
 
     /* Enlève l'usage par défaut de "entrée" */
 
-ville.addEventListener('keydown', (e) => {
-    if (e.keyCode === 13) {
-        e.preventDefault();
-     //   ville.contentEditable = false;
-        main(false);
-    }
-});
+    ville.addEventListener('keydown', (e) => {
+        if (e.keyCode === 13) {
+            e.preventDefault();
+            main(false);
+        }
+    });
+}
 
     /* Auto-complétion */
 
@@ -139,7 +144,7 @@ let options = {
 
 function activatePlacesSearch()
 {
-    let input = document.getElementById('ville');
+    let input = document.getElementById("ville");
     let autocomplete = new google.maps.places.Autocomplete(input, options);
 }
 
